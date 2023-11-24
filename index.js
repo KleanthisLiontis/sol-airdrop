@@ -32,7 +32,7 @@ const airDropSol = async() => {
     try {
         //Devnet is replica of mainnet and is a playground without using money
         const connection = new Connection(clusterApiUrl('devnet'), 'confirmed')
-        const fromAirDropSig = await connection.requestAirdrop(publickey, 3 * LAMPORTS_PER_SOL)//Unit is in lamports not Sol. 1->1bill
+        const fromAirDropSig = await connection.requestAirdrop(publickey, 3 * LAMPORTS_PER_SOL)//Unit is in lamports not Sol. 1->mill
         await connection.confirmTransaction(fromAirDropSig)
     } catch (err) {
         console.error(err)
