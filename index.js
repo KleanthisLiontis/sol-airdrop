@@ -1,3 +1,5 @@
+//Basic test 
+
 const{
     Connection,
     PublicKey,
@@ -25,3 +27,22 @@ const getWalletBalance = async() => {
         console.error(err)
     }
 }
+
+const airDropSol = async() => {
+    try {
+        //Devnet is replica of mainnet and is a playground without using money
+        const connection = new Connection(clusterApiUrl('devnet'), 'confirmed')
+        const fromAirDropSig = await connection.requestAirdrop(publickey, 3 * LAMPORTS_PER_SOL)//Unit is in lamports not Sol. 1->1bill
+        await connection.confirmTransaction(fromAirDropSig)
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+const main = async() => {
+    await getWalletBalance()
+    await airDropSol()
+    await getWalletBalance()
+}
+
+main()
